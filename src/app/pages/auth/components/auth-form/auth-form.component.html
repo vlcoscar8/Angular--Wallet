@@ -3,7 +3,12 @@
     <div class="header">
       <P>Sign Into Your Account </P>
     </div>
-    <form (ngSubmit)="submitForm()" name="userForm" [formGroup]="userForm">
+    <form
+      (ngSubmit)="submitForm()"
+      name="userForm"
+      [formGroup]="userForm"
+      *ngIf="userForm"
+    >
       <div class="username-input" *ngIf="registerFormShow">
         <mat-form-field class="full-width" appearance="outline">
           <mat-label>Username</mat-label>
@@ -40,18 +45,18 @@
           <input
             formControlName="password"
             matInput
-            [type]="hide ? 'password' : 'text'"
+            [type]="hidePassword ? 'password' : 'text'"
             required
           />
           <span
             mat-icon-button
             matSuffix
-            (click)="hide = !hide"
+            (click)="hidePassword = !hidePassword"
             [attr.aria-label]="'Hide Password'"
-            [attr.aria-pressed]="hide"
+            [attr.aria-pressed]="hidePassword"
           >
             <mat-icon>
-              {{ hide ? "visibility_off" : "visibility" }}
+              {{ hidePassword ? "visibility_off" : "visibility" }}
             </mat-icon>
           </span>
           <mat-error *ngIf="!userForm.controls['password'].valid">
