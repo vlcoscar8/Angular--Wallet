@@ -1,7 +1,13 @@
 <mat-card>
   <mat-card-content>
     <div class="header">
-      <P>Sign Into Your Account </P>
+      <P>
+        {{
+          !registerFormShow
+            ? "Sign Into Your Account"
+            : "Register Into an Account"
+        }}</P
+      >
     </div>
     <form
       (ngSubmit)="submitForm()"
@@ -70,7 +76,7 @@
     </form>
 
     <div class="button-row" (click)="registerFormShow = !registerFormShow">
-      {{ !registerFormShow ? "Create new Account" : "Back" }}
+      <p>{{ !registerFormShow ? "Create new Account" : "Back" }}</p>
     </div>
   </mat-card-content>
 </mat-card>
