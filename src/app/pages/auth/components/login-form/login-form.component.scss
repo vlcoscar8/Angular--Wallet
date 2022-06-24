@@ -14,6 +14,7 @@ mat-card {
 
 .button-row {
   padding-top: 5px;
+  cursor: pointer;
 }
 
 .button-row a {
@@ -25,20 +26,12 @@ mat-card {
   padding-left: 0px;
 }
 
-.emailInput {
+.email-input {
   padding-top: 10px;
 }
 
-.contentBody {
-  padding: 60px 1rem;
-  background: #1b6ca8;
-  display: block;
-}
-
-.aLink {
-  float: right;
-  padding-right: 60px;
-  text-decoration: none;
+.username-input {
+  padding-top: 10px;
 }
 
 .mat-flat-button {

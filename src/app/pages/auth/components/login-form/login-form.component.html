@@ -3,8 +3,23 @@
     <div class="header">
       <P>Sign Into Your Account </P>
     </div>
-    <form (ngSubmit)="onLogin()" name="loginForm" [formGroup]="loginForm">
-      <div class="emailInput">
+    <form (ngSubmit)="submitForm()" name="userForm" [formGroup]="userForm">
+      <div class="username-input" *ngIf="registerFormShow">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Username</mat-label>
+          <input
+            formControlName="username"
+            matInput
+            type="text"
+            placeholder="Enter username"
+            required
+          />
+          <mat-error *ngIf="!userForm.controls['username'].valid">
+            Username is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="email-input">
         <mat-form-field class="full-width" appearance="outline">
           <mat-label>Email</mat-label>
           <input
@@ -13,7 +28,7 @@
             placeholder="Enter email address"
             required
           />
-          <mat-error *ngIf="!loginForm.controls['email'].valid">
+          <mat-error *ngIf="!userForm.controls['email'].valid">
             Email is required
           </mat-error>
         </mat-form-field>
@@ -39,16 +54,18 @@
               {{ hide ? "visibility_off" : "visibility" }}
             </mat-icon>
           </span>
-          <mat-error *ngIf="!loginForm.controls['password'].valid">
+          <mat-error *ngIf="!userForm.controls['password'].valid">
             Password is required
           </mat-error>
         </mat-form-field>
       </div>
-      <button mat-flat-button color="primary" type="submit">Login</button>
+      <button mat-flat-button color="primary" type="submit">
+        {{ !registerFormShow ? "Login" : "Register" }}
+      </button>
     </form>
 
-    <div class="button-row">
-      <p>Create New Account</p>
+    <div class="button-row" (click)="registerFormShow = !registerFormShow">
+      {{ !registerFormShow ? "Create new Account" : "Back" }}
     </div>
   </mat-card-content>
 </mat-card>

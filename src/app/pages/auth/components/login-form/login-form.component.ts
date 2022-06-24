@@ -7,20 +7,29 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./login-form.component.scss'],
 })
 export class LoginFormComponent implements OnInit {
-  hide: boolean = false;
+  public hide: boolean = false;
+  public registerFormShow: boolean = false;
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {}
 
-  loginForm: FormGroup = this.fb.group({
+  public userForm: FormGroup = this.fb.group({
+    username: [
+      '',
+      [
+        this.registerFormShow ? Validators.required : Validators.nullValidator,
+        Validators.minLength(6),
+      ],
+    ],
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]],
   });
 
-  onLogin() {
-    if (!this.loginForm.valid) {
+  submitForm() {
+    if (!this.userForm.valid) {
       return;
     }
-    console.log(this.loginForm.value);
+    console.log(this.userForm.value);
+    this.userForm.reset();
   }
 }
