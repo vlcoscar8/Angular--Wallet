@@ -1,5 +1,4 @@
 import { RouterModule } from '@angular/router';
-import { LoginFormComponent } from './components/login-form/login-form.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthRoutingModule } from './auth-routing.module';
@@ -9,9 +8,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { AuthFormComponent } from './components/auth-form/auth-form.component';
 
 @NgModule({
-  declarations: [AuthComponent, LoginFormComponent],
+  declarations: [AuthComponent, AuthFormComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,
