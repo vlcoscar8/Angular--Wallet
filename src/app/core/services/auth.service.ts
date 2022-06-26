@@ -2,7 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { RegisterResponse, User, LoginResponse } from './model/user.model';
+import {
+  RegisterResponse,
+  User,
+  LoginResponse,
+  LogoutResponse,
+} from './model/user.model';
 
 const ACCESS_TOKEN = 'access_token';
 
@@ -34,5 +39,15 @@ export class AuthService {
           this.userLogged$.next(true);
         })
       );
+  }
+
+  public logout(): Observable<LogoutResponse> {
+    localStorage.removeItem(ACCESS_TOKEN);
+    this.userLogged$.next(false);
+
+    return this.httpClient.post<LogoutResponse>(
+      `${environment.api_url}user/logout`,
+      ''
+    );
   }
 }

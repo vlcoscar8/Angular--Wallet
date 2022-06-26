@@ -14,3 +14,9 @@ export interface LoginResponse {
   userId: string;
   token: string;
 }
+
+export interface LogoutResponse {
+  status: number;
+  message: string;
+  token: string;
+}
