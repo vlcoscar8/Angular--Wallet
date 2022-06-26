@@ -1,5 +1,8 @@
+import { Subject } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth-form',
@@ -10,9 +13,14 @@ export class AuthFormComponent implements OnInit {
   public hidePassword: boolean = false;
   public registerFormShow: boolean = false;
   public userForm?: FormGroup;
-  constructor(private fb: FormBuilder) {}
+  public userLogged?: boolean;
+  public error?: string;
 
-  ngOnInit(): void {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {
     this.userForm = this.fb.group({
       username: [
         '',
@@ -24,15 +32,33 @@ export class AuthFormComponent implements OnInit {
         ],
       ],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      password: ['', [Validators.required, Validators.minLength(4)]],
     });
+  }
+
+  ngOnInit(): void {
+    this.authService.userLogged$.subscribe((res) => (this.userLogged = res));
   }
 
   submitForm() {
     if (!this.userForm?.valid) {
       return;
     }
-    console.log(this.userForm.value);
-    this.userForm.reset();
+
+    this.userForm.value.username !== ''
+      ? this.authService.register(this.userForm.value).subscribe({
+          next: () => {
+            this.registerFormShow = false;
+            this.userForm?.reset();
+          },
+          error: (res) => (this.error = res.error),
+        })
+      : this.authService.login(this.userForm.value).subscribe({
+          next: () => {
+            this.router.navigate(['/home']);
+            this.userForm?.reset();
+          },
+          error: (res) => (this.error = res.error),
+        });
   }
 }

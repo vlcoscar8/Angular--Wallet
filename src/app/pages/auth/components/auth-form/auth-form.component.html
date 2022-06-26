@@ -74,7 +74,7 @@
         {{ !registerFormShow ? "Login" : "Register" }}
       </button>
     </form>
-
+    <p *ngIf="error" class="error-message">{{ error }}</p>
     <div class="button-row" (click)="registerFormShow = !registerFormShow">
       <p>{{ !registerFormShow ? "Create new Account" : "Back" }}</p>
     </div>
