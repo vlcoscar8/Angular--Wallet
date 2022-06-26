@@ -1,7 +1,7 @@
 export interface User {
   username?: string;
   email: string;
-  password: string;
+  password?: string;
 }
 
 export interface RegisterResponse {
@@ -25,6 +25,7 @@ export interface UserDetailResponse {
   username: string;
   email: string;
   cash: number;
+  friends: any[];
   movements: any[];
   __v: number;
 }

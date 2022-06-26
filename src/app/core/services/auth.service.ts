@@ -68,4 +68,21 @@ export class AuthService {
       ? this.userLogged$.next(true)
       : this.userLogged$.next(false);
   }
+
+  public getBearerToken(): string {
+    const token = localStorage.getItem(ACCESS_TOKEN);
+    return token ? JSON.parse(token).token.split(' ')[1] : '';
+  }
+
+  public addFriend(username: string): Observable<UserDetailResponse> {
+    const token = localStorage.getItem(ACCESS_TOKEN);
+    const userId: string = token ? JSON.parse(token).userId : '';
+    const body = {
+      username: username,
+    };
+    return this.httpClient.put<UserDetailResponse>(
+      `${environment.api_url}user/add/${userId}`,
+      body
+    );
+  }
 }
