@@ -1,1 +1,22 @@
-<p>home works!</p>
+<section class="home">
+  <figure class="home__account">
+    <mat-accordion>
+      <mat-expansion-panel
+        (opened)="panelOpenState = true"
+        (closed)="panelOpenState = false"
+      >
+        <mat-expansion-panel-header>
+          <mat-panel-title> Your account </mat-panel-title>
+        </mat-expansion-panel-header>
+        <ng-template matExpansionPanelContent>
+          <p>Total amount: {{ totalAmount }} €</p>
+          <p class="incomes">Incomes: {{ incomes }} €</p>
+          <p class="losses">Losses: {{ losses }} €</p>
+          <button mat-flat-button color="primary" [routerLink]="['/movements']">
+            Movements
+          </button>
+        </ng-template>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </figure>
+</section>
