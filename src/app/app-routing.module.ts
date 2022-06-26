@@ -15,11 +15,11 @@ const routes: Routes = [
       import('../app/pages/home/home.module').then((m) => m.HomeModule),
   },
   {
-    path: 'detail',
+    path: 'movements',
     pathMatch: 'full',
     loadChildren: () =>
-      import('../app/pages/details/details.module').then(
-        (m) => m.DetailsModule
+      import('./pages/movements/movements.module').then(
+        (m) => m.MovementsModule
       ),
   },
 ];

@@ -1,6 +1,6 @@
 <button mat-button [matMenuTriggerFor]="menu" *ngIf="userLogged">Menu</button>
 <mat-menu #menu="matMenu">
-  <button mat-menu-item>Home</button>
-  <button mat-menu-item>Movements</button>
+  <button mat-menu-item [routerLink]="['/home']">Home</button>
+  <button mat-menu-item [routerLink]="['/movements']">Movements</button>
   <button mat-menu-item (click)="logout()">Logout</button>
 </mat-menu>

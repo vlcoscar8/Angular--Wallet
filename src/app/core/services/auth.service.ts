@@ -60,6 +60,9 @@ export class AuthService {
     );
   }
 
+  /**
+   * Function that check if the user is logged getting the token from localstorage
+   */
   public checkUserLogged(): any {
     localStorage.getItem(ACCESS_TOKEN)
       ? this.userLogged$.next(true)
