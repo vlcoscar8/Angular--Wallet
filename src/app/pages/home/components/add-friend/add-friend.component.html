@@ -1,0 +1,13 @@
+<form
+  (ngSubmit)="submitForm()"
+  name="friendForm"
+  [formGroup]="friendForm"
+  *ngIf="friendForm"
+  class="friend-form"
+>
+  <mat-form-field appearance="fill">
+    <mat-label>Username</mat-label>
+    <input matInput formControlName="username" />
+  </mat-form-field>
+  <button mat-flat-button color="primary" type="submit">Add friend</button>
+</form>
