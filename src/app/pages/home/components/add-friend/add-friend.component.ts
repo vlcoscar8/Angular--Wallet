@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { tap } from 'rxjs';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-add-friend',
@@ -9,7 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class AddFriendComponent implements OnInit {
   public friendForm?: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private authService: AuthService) {
     this.friendForm = this.fb.group({
       username: ['', [Validators.required]],
     });
@@ -18,6 +20,10 @@ export class AddFriendComponent implements OnInit {
   ngOnInit(): void {}
 
   public submitForm() {
-    console.log(this.friendForm?.value);
+    const username = this.friendForm?.value.username;
+
+    this.authService.addFriend(username).subscribe((res) => {
+      this.authService.setFriendList().subscribe((res) => console.log(res));
+    });
   }
 }

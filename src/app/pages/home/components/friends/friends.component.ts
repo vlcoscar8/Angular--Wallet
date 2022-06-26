@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-friends',
@@ -7,7 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FriendsComponent implements OnInit {
   public panelOpenState: boolean = false;
-  constructor() {}
+  public friendsList?: string[];
 
-  ngOnInit(): void {}
+  constructor(private authService: AuthService) {}
+
+  ngOnInit(): void {
+    this.authService.getUserDetail().subscribe((res) => {
+      console.log(res, 1);
+      this.friendsList = res.friends.map((el) => el.username);
+    });
+
+    this.authService.friendsList$.subscribe((res) => {
+      console.log(res, 2);
+      this.friendsList = res;
+    });
+  }
 }
