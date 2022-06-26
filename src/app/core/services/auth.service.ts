@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject, tap } from 'rxjs';
+import { Observable, ReplaySubject, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import {
   RegisterResponse,
   User,
   LoginResponse,
   LogoutResponse,
+  UserDetailResponse,
 } from './model/user.model';
 
 const ACCESS_TOKEN = 'access_token';
@@ -15,7 +16,7 @@ const ACCESS_TOKEN = 'access_token';
   providedIn: 'root',
 })
 export class AuthService {
-  public userLogged$: Subject<boolean> = new Subject();
+  public userLogged$: ReplaySubject<boolean> = new ReplaySubject();
 
   constructor(private httpClient: HttpClient) {}
 
@@ -49,5 +50,19 @@ export class AuthService {
       `${environment.api_url}user/logout`,
       ''
     );
+  }
+
+  public getUserDetail(): Observable<UserDetailResponse> {
+    const token = localStorage.getItem(ACCESS_TOKEN);
+    const userId: string = token ? JSON.parse(token).userId : '';
+    return this.httpClient.get<UserDetailResponse>(
+      `${environment.api_url}user/${userId}`
+    );
+  }
+
+  public checkUserLogged(): any {
+    localStorage.getItem(ACCESS_TOKEN)
+      ? this.userLogged$.next(true)
+      : this.userLogged$.next(false);
   }
 }

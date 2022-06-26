@@ -20,3 +20,11 @@ export interface LogoutResponse {
   message: string;
   token: string;
 }
+
+export interface UserDetailResponse {
+  username: string;
+  email: string;
+  cash: number;
+  movements: any[];
+  __v: number;
+}
