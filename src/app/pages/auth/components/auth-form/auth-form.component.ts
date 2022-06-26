@@ -13,7 +13,6 @@ export class AuthFormComponent implements OnInit {
   public hidePassword: boolean = false;
   public registerFormShow: boolean = false;
   public userForm?: FormGroup;
-  public userLogged?: boolean;
   public error?: string;
 
   constructor(
@@ -36,9 +35,7 @@ export class AuthFormComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    this.authService.userLogged$.subscribe((res) => (this.userLogged = res));
-  }
+  ngOnInit(): void {}
 
   submitForm() {
     if (!this.userForm?.valid) {
