@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
 })
 export class FriendsComponent implements OnInit {
   public panelOpenState: boolean = false;
-  public friendsList?: string[];
+  public friendsList: string[] = [];
 
   constructor(
     private authService: AuthService,

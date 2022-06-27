@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
   styleUrls: ['./add-friend.component.scss'],
 })
 export class AddFriendComponent implements OnInit {
-  public friendForm?: FormGroup;
+  public friendForm: FormGroup;
 
   constructor(private fb: FormBuilder, private friendService: FriendsService) {
     this.friendForm = this.fb.group({
@@ -24,7 +24,14 @@ export class AddFriendComponent implements OnInit {
     const username = this.friendForm?.value.username;
 
     this.friendService.addFriend(username).subscribe((res) => {
-      this.friendService.setFriendList().subscribe((res) => console.log(res));
+      this.friendService.setFriendList().subscribe((res) => this.clearForm());
+    });
+  }
+
+  private clearForm() {
+    this.friendForm.reset();
+    Object.keys(this.friendForm.controls).forEach((key) => {
+      this.friendForm.controls[key].setErrors(null);
     });
   }
 }

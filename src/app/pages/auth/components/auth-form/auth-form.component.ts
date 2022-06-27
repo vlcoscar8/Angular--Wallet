@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class AuthFormComponent implements OnInit {
   public hidePassword: boolean = false;
   public registerFormShow: boolean = false;
-  public userForm?: FormGroup;
+  public userForm: FormGroup;
   public error?: string;
 
   constructor(
@@ -37,24 +37,38 @@ export class AuthFormComponent implements OnInit {
   ngOnInit(): void {}
 
   submitForm() {
-    if (!this.userForm?.valid) {
+    if (!this.userForm.valid) {
       return;
     }
+    console.log(this.userForm.value);
 
-    this.userForm.value.username !== ''
+    this.userForm.value.username
       ? this.authService.register(this.userForm.value).subscribe({
           next: () => {
             this.registerFormShow = false;
-            this.userForm?.reset();
+            this.clearForm();
           },
-          error: (res) => (this.error = res.error),
+          error: (res) => {
+            console.log(2);
+            this.error = res.error;
+          },
         })
       : this.authService.login(this.userForm.value).subscribe({
           next: () => {
             this.router.navigate(['/home']);
-            this.userForm?.reset();
+            this.clearForm();
           },
-          error: (res) => (this.error = res.error),
+          error: (res) => {
+            console.log(1);
+            this.error = res.error;
+          },
         });
+  }
+
+  private clearForm() {
+    this.userForm.reset();
+    Object.keys(this.userForm.controls).forEach((key) => {
+      this.userForm.controls[key].setErrors(null);
+    });
   }
 }

@@ -4,7 +4,9 @@
     (closed)="panelOpenState = false"
   >
     <mat-expansion-panel-header>
-      <mat-panel-title> Your friends </mat-panel-title>
+      <mat-panel-title>
+        Your friends ({{ friendsList.length }})</mat-panel-title
+      >
     </mat-expansion-panel-header>
     <ng-template matExpansionPanelContent>
       <p *ngFor="let username of friendsList">{{ username }}</p>
