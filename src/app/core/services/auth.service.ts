@@ -17,7 +17,6 @@ const ACCESS_TOKEN = 'access_token';
 })
 export class AuthService {
   public userLogged$: ReplaySubject<boolean> = new ReplaySubject();
-  
 
   constructor(private httpClient: HttpClient) {}
 
@@ -56,6 +55,7 @@ export class AuthService {
   public getUserDetail(): Observable<UserDetailResponse> {
     const token = localStorage.getItem(ACCESS_TOKEN);
     const userId: string = token ? JSON.parse(token).userId : '';
+
     return this.httpClient.get<UserDetailResponse>(
       `${environment.api_url}user/${userId}`
     );
@@ -75,6 +75,4 @@ export class AuthService {
 
     return token ? JSON.parse(token).token : '';
   }
-
-  
 }

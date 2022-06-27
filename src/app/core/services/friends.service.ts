@@ -19,14 +19,19 @@ export class FriendsService {
   ) {}
 
   public addFriend(username: string): Observable<UserDetailResponse> {
-    const token = localStorage.getItem(ACCESS_TOKEN);
-    const userId: string = token ? JSON.parse(token).userId : '';
-    const body = {
-      friendUsername: username,
-    };
+    const { userId, body } = this.setRequestData(username);
 
     return this.httpClient.put<UserDetailResponse>(
       `${environment.api_url}user/add/${userId}`,
+      body
+    );
+  }
+
+  public removeFriend(username: string): Observable<UserDetailResponse> {
+    const { userId, body } = this.setRequestData(username);
+
+    return this.httpClient.put<UserDetailResponse>(
+      `${environment.api_url}user/remove/${userId}`,
       body
     );
   }
@@ -39,5 +44,14 @@ export class FriendsService {
           this.friendsList$?.next(res.friends.map((el) => el.username))
         )
       );
+  }
+
+  private setRequestData(username: string): any {
+    const token = localStorage.getItem(ACCESS_TOKEN);
+    const userId: string = token ? JSON.parse(token).userId : '';
+    const body = {
+      friendUsername: username,
+    };
+    return { userId, body };
   }
 }
