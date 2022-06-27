@@ -1,37 +1,41 @@
-<table
-  mat-table
-  [dataSource]="movements"
-  class="mat-elevation-z8"
-  *ngIf="updated"
->
-  <ng-container matColumnDef="from" class="row">
-    <th mat-header-cell *matHeaderCellDef>From</th>
-    <td mat-cell *matCellDef="let element">{{ element.from[0].username }}</td>
-  </ng-container>
+<div class="mat-elevation-z8" *ngIf="updated">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="from" class="row">
+      <th mat-header-cell *matHeaderCellDef>From</th>
+      <td mat-cell *matCellDef="let element">{{ element.from[0].username }}</td>
+    </ng-container>
 
-  <ng-container matColumnDef="to" class="row">
-    <th mat-header-cell *matHeaderCellDef>To</th>
-    <td mat-cell *matCellDef="let element">{{ element.to[0].username }}</td>
-  </ng-container>
+    <ng-container matColumnDef="to" class="row">
+      <th mat-header-cell *matHeaderCellDef>To</th>
+      <td mat-cell *matCellDef="let element">{{ element.to[0].username }}</td>
+    </ng-container>
 
-  <ng-container matColumnDef="type" class="row">
-    <th mat-header-cell *matHeaderCellDef>Type</th>
-    <td mat-cell *matCellDef="let element">{{ element.type }}</td>
-  </ng-container>
+    <ng-container matColumnDef="type" class="row">
+      <th mat-header-cell *matHeaderCellDef>Type</th>
+      <td mat-cell *matCellDef="let element">{{ element.type }}</td>
+    </ng-container>
 
-  <ng-container matColumnDef="amount" class="row">
-    <th mat-header-cell *matHeaderCellDef>Amount</th>
-    <td mat-cell *matCellDef="let element">
-      <p [ngStyle]="{ color: element.type === 'send' ? 'red' : 'green' }">
-        {{
-          element.type === "send"
-            ? "-" + element.amount + "€"
-            : "+" + element.amount + "€"
-        }}
-      </p>
-    </td>
-  </ng-container>
+    <ng-container matColumnDef="amount" class="row">
+      <th mat-header-cell *matHeaderCellDef>Amount</th>
+      <td mat-cell *matCellDef="let element">
+        <p [ngStyle]="{ color: element.type === 'send' ? 'red' : 'green' }">
+          {{
+            element.type === "send"
+              ? "-" + element.amount + "€"
+              : "+" + element.amount + "€"
+          }}
+        </p>
+      </td>
+    </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="array"></tr>
-  <tr mat-row *matRowDef="let row; columns: array"></tr>
-</table>
+    <tr mat-header-row *matHeaderRowDef="array"></tr>
+    <tr mat-row *matRowDef="let row; columns: array"></tr>
+  </table>
+  <mat-paginator
+    [pageSize]="5"
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+    aria-label="Select page"
+  >
+  </mat-paginator>
+</div>
