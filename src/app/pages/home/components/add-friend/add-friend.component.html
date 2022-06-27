@@ -1,5 +1,4 @@
 <form
-  (ngSubmit)="submitForm()"
   name="friendForm"
   [formGroup]="friendForm"
   *ngIf="friendForm"
@@ -9,5 +8,13 @@
     <mat-label>Username</mat-label>
     <input matInput formControlName="username" />
   </mat-form-field>
-  <button mat-flat-button color="primary" type="submit">Add friend</button>
+  <div class="friend-form__buttons">
+    <button mat-flat-button color="primary" type="submit" (click)="addFriend()">
+      Add friend
+    </button>
+    <button mat-flat-button color="warn" type="submit" (click)="removeFriend()">
+      Remove friend
+    </button>
+  </div>
+  <p *ngIf="error !== ''">{{ error }}</p>
 </form>
