@@ -1,3 +1,4 @@
+import { forkJoin, switchMap } from 'rxjs';
 import { MovementsService } from './../../../core/services/movements.service';
 import { Movement } from './../../../core/services/model/user.model';
 import {
@@ -18,27 +19,25 @@ import { MatTableDataSource } from '@angular/material/table';
 export class TableListComponent implements OnInit, AfterViewInit {
   @Input() public type?: string;
   public movements: Movement[] = [];
-  public updated: boolean = false;
   public array: string[] = ['from', 'to', 'type', 'amount'];
-  public dataSource = new MatTableDataSource<Movement>(this.movements);
+  public dataSource: any;
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private movService: MovementsService) {}
 
-  @ViewChild(MatPaginator) paginator: any = MatPaginator;
-
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-  }
+  ngAfterViewInit(): void {}
 
   ngOnInit(): void {
     this.movService.getMovements().subscribe((res) => {
-      this.movements.push(res);
+      this.movements = res.reverse();
 
-      if (this.type === 'last' && this.movements.length > 1) {
+      if (this.type === 'last' && this.movements) {
         this.movements.shift();
       }
 
-      this.updated = true;
+      this.dataSource = new MatTableDataSource(this.movements);
+      this.dataSource.paginator = this.paginator;
     });
   }
 }

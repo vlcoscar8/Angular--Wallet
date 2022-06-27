@@ -6,8 +6,8 @@
 >
   <mat-form-field class="example-form-field" appearance="fill">
     <mat-label>Order money</mat-label>
-    <input matInput type="number" [(ngModel)]="value" formControlName="order" />
-    <mat-error *ngIf="!orderForm.controls['order'].valid">
+    <input matInput type="number" formControlName="amount" />
+    <mat-error *ngIf="!orderForm.controls['amount'].valid">
       Only numbers
     </mat-error>
   </mat-form-field>

@@ -1,3 +1,4 @@
+import { MovementsService } from './../../../../core/services/movements.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
@@ -10,9 +11,9 @@ export class ReceiveMoneyComponent implements OnInit {
   value = 'Clear me';
   public orderForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private movService: MovementsService) {
     this.orderForm = this.fb.group({
-      order: ['', [Validators.required, Validators.pattern(/^[0-9]\d*$/)]],
+      amount: ['', [Validators.required, Validators.pattern(/^[0-9]\d*$/)]],
     });
   }
 
@@ -23,6 +24,9 @@ export class ReceiveMoneyComponent implements OnInit {
       return;
     }
     console.log(this.orderForm.value);
+    this.movService
+      .receiveMoney(this.orderForm.value)
+      .subscribe((res) => console.log(res));
     this.clearForm();
   }
 

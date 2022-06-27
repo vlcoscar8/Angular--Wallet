@@ -3,3 +3,8 @@ button {
   border: none;
   cursor: pointer;
 }
+
+form {
+  display: flex;
+  flex-direction: column;
+}
