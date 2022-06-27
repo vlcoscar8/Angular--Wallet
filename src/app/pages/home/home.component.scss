@@ -14,10 +14,15 @@
 
   &__friends {
     width: 80vw;
-    max-width: 450px;
+    max-width: 400px;
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
+  }
+
+  &__movs {
+    width: 80vw;
+    max-width: 450px;
   }
 }
 

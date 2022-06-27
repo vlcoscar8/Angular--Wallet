@@ -12,6 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LastMovsComponent } from './components/last-movs/last-movs.component';
 import { MatListModule } from '@angular/material/list';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { MatListModule } from '@angular/material/list';
     MatInputModule,
     ReactiveFormsModule,
     MatListModule,
+    MatTableModule,
   ],
 })
 export class HomeModule {}

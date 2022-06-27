@@ -31,8 +31,8 @@ export interface UserDetailResponse {
 }
 
 export interface Movement {
-  from: User;
-  to: User;
+  from: User[];
+  to: User[];
   type: string;
   amount: number;
   currentCash: number;
