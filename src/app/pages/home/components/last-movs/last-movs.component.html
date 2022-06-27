@@ -1,0 +1,7 @@
+<mat-selection-list #movs [multiple]="false">
+  <mat-list-option *ngFor="let mov of movements" [value]="mov">
+    {{ mov.from }}
+  </mat-list-option>
+</mat-selection-list>
+
+<p>Option selected: {{ movs.selectedOptions.selected[0]?.value.amount }}</p>

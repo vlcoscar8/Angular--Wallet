@@ -10,6 +10,8 @@ import { AddFriendComponent } from './components/add-friend/add-friend.component
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LastMovsComponent } from './components/last-movs/last-movs.component';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     AccountComponent,
     FriendsComponent,
     AddFriendComponent,
+    LastMovsComponent,
   ],
   imports: [
     CommonModule,
@@ -26,6 +29,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
+    MatListModule,
   ],
 })
 export class HomeModule {}

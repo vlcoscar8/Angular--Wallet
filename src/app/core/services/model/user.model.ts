@@ -29,3 +29,12 @@ export interface UserDetailResponse {
   movements: any[];
   __v: number;
 }
+
+export interface Movement {
+  from: User;
+  to: User;
+  type: string;
+  amount: number;
+  currentCash: number;
+  __v: number;
+}
