@@ -12,9 +12,14 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { TotalAmountComponent } from './components/total-amount/total-amount.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [MovementsComponent, ReceiveMoneyComponent, TotalAmountComponent],
+  declarations: [
+    MovementsComponent,
+    ReceiveMoneyComponent,
+    TotalAmountComponent,
+  ],
   imports: [
     CommonModule,
     MovementsRoutingModule,
@@ -26,6 +31,7 @@ import { TotalAmountComponent } from './components/total-amount/total-amount.com
     FormsModule,
     MatButtonModule,
     MatCardModule,
+    ReactiveFormsModule,
   ],
 })
 export class MovementsModule {}

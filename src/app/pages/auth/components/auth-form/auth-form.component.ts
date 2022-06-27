@@ -40,7 +40,6 @@ export class AuthFormComponent implements OnInit {
     if (!this.userForm.valid) {
       return;
     }
-    console.log(this.userForm.value);
 
     this.userForm.value.username
       ? this.authService.register(this.userForm.value).subscribe({
@@ -49,7 +48,6 @@ export class AuthFormComponent implements OnInit {
             this.clearForm();
           },
           error: (res) => {
-            console.log(2);
             this.error = res.error;
           },
         })
@@ -59,7 +57,6 @@ export class AuthFormComponent implements OnInit {
             this.clearForm();
           },
           error: (res) => {
-            console.log(1);
             this.error = res.error;
           },
         });
