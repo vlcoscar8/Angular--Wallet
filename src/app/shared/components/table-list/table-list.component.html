@@ -36,6 +36,7 @@
     [pageSizeOptions]="[5, 10, 20]"
     showFirstLastButtons
     aria-label="Select page"
+    *ngIf="type !== 'last'"
   >
   </mat-paginator>
 </div>

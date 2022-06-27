@@ -3,11 +3,16 @@
   height: 90vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
 
-  &__list {
-    width: 80vw;
-    max-width: 600px;
+  &__left {
+    &--amount {
+      width: 25%;
+    }
+    &--list {
+      width: 80vw;
+      max-width: 600px;
+    }
   }
 }
