@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LastMovsComponent } from './last-movs.component';
+import { MovListComponent } from './mov-list.component';
 
-describe('LastMovsComponent', () => {
-  let component: LastMovsComponent;
-  let fixture: ComponentFixture<LastMovsComponent>;
+describe('MovListComponent', () => {
+  let component: MovListComponent;
+  let fixture: ComponentFixture<MovListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LastMovsComponent ]
+      declarations: [ MovListComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LastMovsComponent);
+    fixture = TestBed.createComponent(MovListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
