@@ -10,9 +10,11 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { ReceiveMoneyComponent } from './components/receive-money/receive-money.component';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { TotalAmountComponent } from './components/total-amount/total-amount.component';
 
 @NgModule({
-  declarations: [MovementsComponent, ReceiveMoneyComponent],
+  declarations: [MovementsComponent, ReceiveMoneyComponent, TotalAmountComponent],
   imports: [
     CommonModule,
     MovementsRoutingModule,
@@ -23,6 +25,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatIconModule,
     FormsModule,
     MatButtonModule,
+    MatCardModule,
   ],
 })
 export class MovementsModule {}
