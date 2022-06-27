@@ -1,0 +1,17 @@
+<mat-form-field class="example-form-field" appearance="fill">
+  <mat-label>Order money</mat-label>
+  <input matInput type="text" [(ngModel)]="value" />
+  <!-- <mat-error *ngIf="emailFormControl.hasError('order')">
+    Please enter a valid email address
+  </mat-error> -->
+  <button
+    *ngIf="value"
+    matSuffix
+    mat-icon-button
+    aria-label="Clear"
+    (click)="value = ''"
+  >
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-form-field>
+<button mat-raised-button color="primary">Order</button>

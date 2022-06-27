@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MovListComponent } from './mov-list.component';
+import { ReceiveMoneyComponent } from './receive-money.component';
 
-describe('MovListComponent', () => {
-  let component: MovListComponent;
-  let fixture: ComponentFixture<MovListComponent>;
+describe('ReceiveMoneyComponent', () => {
+  let component: ReceiveMoneyComponent;
+  let fixture: ComponentFixture<ReceiveMoneyComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MovListComponent ]
+      declarations: [ ReceiveMoneyComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MovListComponent);
+    fixture = TestBed.createComponent(ReceiveMoneyComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
