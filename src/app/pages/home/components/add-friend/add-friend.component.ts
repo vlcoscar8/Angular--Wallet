@@ -1,3 +1,4 @@
+import { FriendsService } from './../../../../core/services/friends.service';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { tap } from 'rxjs';
@@ -11,7 +12,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
 export class AddFriendComponent implements OnInit {
   public friendForm?: FormGroup;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(private fb: FormBuilder, private friendService: FriendsService) {
     this.friendForm = this.fb.group({
       username: ['', [Validators.required]],
     });
@@ -22,8 +23,8 @@ export class AddFriendComponent implements OnInit {
   public submitForm() {
     const username = this.friendForm?.value.username;
 
-    this.authService.addFriend(username).subscribe((res) => {
-      this.authService.setFriendList().subscribe((res) => console.log(res));
+    this.friendService.addFriend(username).subscribe((res) => {
+      this.friendService.setFriendList().subscribe((res) => console.log(res));
     });
   }
 }

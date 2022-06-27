@@ -17,7 +17,7 @@ const ACCESS_TOKEN = 'access_token';
 })
 export class AuthService {
   public userLogged$: ReplaySubject<boolean> = new ReplaySubject();
-  public friendsList$: ReplaySubject<string[]> = new ReplaySubject();
+  
 
   constructor(private httpClient: HttpClient) {}
 
@@ -76,24 +76,5 @@ export class AuthService {
     return token ? JSON.parse(token).token : '';
   }
 
-  public addFriend(username: string): Observable<UserDetailResponse> {
-    const token = localStorage.getItem(ACCESS_TOKEN);
-    const userId: string = token ? JSON.parse(token).userId : '';
-    const body = {
-      friendUsername: username,
-    };
-
-    return this.httpClient.put<UserDetailResponse>(
-      `${environment.api_url}user/add/${userId}`,
-      body
-    );
-  }
-
-  public setFriendList(): Observable<UserDetailResponse> {
-    return this.getUserDetail().pipe(
-      tap((res) =>
-        this.friendsList$?.next(res.friends.map((el) => el.username))
-      )
-    );
-  }
+  
 }

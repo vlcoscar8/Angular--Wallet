@@ -1,3 +1,4 @@
+import { FriendsService } from './../../../../core/services/friends.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/core/services/auth.service';
 
@@ -10,16 +11,17 @@ export class FriendsComponent implements OnInit {
   public panelOpenState: boolean = false;
   public friendsList?: string[];
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private friendService: FriendsService
+  ) {}
 
   ngOnInit(): void {
     this.authService.getUserDetail().subscribe((res) => {
-      console.log(res, 1);
       this.friendsList = res.friends.map((el) => el.username);
     });
 
-    this.authService.friendsList$.subscribe((res) => {
-      console.log(res, 2);
+    this.friendService.friendsList$.subscribe((res) => {
       this.friendsList = res;
     });
   }
