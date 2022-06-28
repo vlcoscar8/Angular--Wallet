@@ -33,7 +33,9 @@ export class TableListComponent implements OnInit, AfterViewInit {
       this.movements = res.reverse();
 
       if (this.type === 'last' && this.movements) {
-        this.movements.shift();
+        this.movements = this.movements
+          .reverse()
+          .splice(this.movements.length - 1, 1);
       }
 
       this.dataSource = new MatTableDataSource(this.movements);

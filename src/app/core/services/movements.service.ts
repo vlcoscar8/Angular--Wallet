@@ -23,6 +23,7 @@ export class MovementsService {
       map((res) => {
         const array = res.movements.map((mov) => mov);
         this.movementsList$.next(array);
+        
         return array;
       })
     );

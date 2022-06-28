@@ -23,7 +23,6 @@ export class ReceiveMoneyComponent implements OnInit {
     if (!this.orderForm.valid) {
       return;
     }
-    console.log(this.orderForm.value);
     this.movService
       .receiveMoney(this.orderForm.value)
       .subscribe((res) => console.log(res));
