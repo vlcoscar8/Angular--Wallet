@@ -15,4 +15,11 @@
       max-width: 600px;
     }
   }
+
+  &__right {
+    display: flex;
+    align-items: flex-start;
+    width: 80vw;
+    max-width: 600px;
+  }
 }

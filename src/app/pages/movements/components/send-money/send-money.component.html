@@ -1,0 +1,23 @@
+<form
+  (ngSubmit)="submitForm()"
+  name="sendForm"
+  [formGroup]="sendForm"
+  *ngIf="friendsList"
+>
+  <mat-form-field appearance="fill">
+    <mat-label>Friend</mat-label>
+    <mat-select formControlName="friend">
+      <mat-option *ngFor="let friend of friendsList" [value]="friend">
+        {{ friend }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field class="example-form-field" appearance="fill">
+    <mat-label>Amount</mat-label>
+    <input matInput type="number" formControlName="amount" />
+    <mat-error *ngIf="!sendForm.controls['amount'].valid">
+      Only numbers
+    </mat-error>
+  </mat-form-field>
+  <button mat-raised-button color="primary" type="submit">Send Money</button>
+</form>

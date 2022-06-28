@@ -13,12 +13,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { TotalAmountComponent } from './components/total-amount/total-amount.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SendMoneyComponent } from './components/send-money/send-money.component';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
     MovementsComponent,
     ReceiveMoneyComponent,
     TotalAmountComponent,
+    SendMoneyComponent,
   ],
   imports: [
     CommonModule,
@@ -32,6 +35,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatButtonModule,
     MatCardModule,
     ReactiveFormsModule,
+    MatSelectModule,
   ],
 })
 export class MovementsModule {}
