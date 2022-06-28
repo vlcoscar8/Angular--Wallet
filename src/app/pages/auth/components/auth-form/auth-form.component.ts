@@ -1,5 +1,5 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { Router } from '@angular/router';
 
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   templateUrl: './auth-form.component.html',
   styleUrls: ['./auth-form.component.scss'],
 })
-export class AuthFormComponent implements OnInit {
+export class AuthFormComponent {
   public hidePassword: boolean = false;
   public registerFormShow: boolean = false;
   public userForm: FormGroup;
@@ -33,8 +33,6 @@ export class AuthFormComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(4)]],
     });
   }
-
-  ngOnInit(): void {}
 
   submitForm() {
     if (!this.userForm.valid) {

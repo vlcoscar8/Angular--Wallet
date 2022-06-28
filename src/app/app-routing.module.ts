@@ -1,5 +1,7 @@
+import { HomeComponent } from './pages/home/home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -13,7 +15,9 @@ const routes: Routes = [
     pathMatch: 'full',
     loadChildren: () =>
       import('../app/pages/home/home.module').then((m) => m.HomeModule),
+    canActivate: [AuthGuard],
   },
+
   {
     path: 'movements',
     pathMatch: 'full',
@@ -21,6 +25,12 @@ const routes: Routes = [
       import('./pages/movements/movements.module').then(
         (m) => m.MovementsModule
       ),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: '**',
+    redirectTo: '',
+    component: HomeComponent,
   },
 ];
 

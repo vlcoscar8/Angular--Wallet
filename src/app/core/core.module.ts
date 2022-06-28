@@ -9,11 +9,13 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MenuComponent } from './components/header/components/menu/menu.component';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { AuthGuard } from './guards/auth.guard';
 
 @NgModule({
   declarations: [HeaderComponent, FooterComponent, MenuComponent],
   providers: [
     AuthService,
+    AuthGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,

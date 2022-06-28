@@ -65,9 +65,13 @@ export class AuthService {
    * Function that check if the user is logged getting the token from localstorage
    */
   public checkUserLogged(): any {
-    localStorage.getItem(ACCESS_TOKEN)
-      ? this.userLogged$.next(true)
-      : this.userLogged$.next(false);
+    if (localStorage.getItem(ACCESS_TOKEN)) {
+      this.userLogged$.next(true);
+      return true;
+    } else {
+      this.userLogged$.next(false);
+      return false;
+    }
   }
 
   public getBearerToken(): string {
