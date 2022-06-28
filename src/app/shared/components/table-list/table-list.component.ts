@@ -5,7 +5,9 @@ import {
   AfterViewInit,
   Component,
   Input,
+  OnChanges,
   OnInit,
+  SimpleChanges,
   ViewChild,
 } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
@@ -16,7 +18,7 @@ import { MatTableDataSource } from '@angular/material/table';
   templateUrl: './table-list.component.html',
   styleUrls: ['./table-list.component.scss'],
 })
-export class TableListComponent implements OnInit, AfterViewInit {
+export class TableListComponent implements OnInit, OnChanges {
   @Input() public type?: string;
   public movements: Movement[] = [];
   public array: string[] = ['from', 'to', 'type', 'amount'];
@@ -26,20 +28,25 @@ export class TableListComponent implements OnInit, AfterViewInit {
 
   constructor(private movService: MovementsService) {}
 
-  ngAfterViewInit(): void {}
-
   ngOnInit(): void {
     this.movService.getMovements().subscribe((res) => {
       this.movements = res.reverse();
 
       if (this.type === 'last' && this.movements) {
-        this.movements = this.movements
-          .reverse()
-          .splice(this.movements.length - 1, 1);
+        this.movements = res.reverse().splice(this.movements.length - 1, 1);
       }
 
-      this.dataSource = new MatTableDataSource(this.movements);
+      this.dataSource = new MatTableDataSource(this.movements.reverse());
       this.dataSource.paginator = this.paginator;
     });
+
+    this.movService.movementsList$.subscribe((res) => {
+      this.movements = res.reverse();
+      if (this.dataSource) {
+        this.dataSource.data = this.movements;
+      }
+    });
   }
+
+  ngOnChanges(): void {}
 }

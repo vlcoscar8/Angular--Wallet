@@ -12,6 +12,7 @@ const ACCESS_TOKEN = 'access_token';
 })
 export class MovementsService {
   public movementsList$: ReplaySubject<Movement[]> = new ReplaySubject();
+  public totalAmount$: ReplaySubject<number> = new ReplaySubject();
 
   constructor(
     private authService: AuthService,
@@ -23,7 +24,6 @@ export class MovementsService {
       map((res) => {
         const array = res.movements.map((mov) => mov);
         this.movementsList$.next(array);
-        
         return array;
       })
     );
@@ -36,5 +36,12 @@ export class MovementsService {
       `${environment.api_url}user/receive/${userId}`,
       body
     );
+  }
+
+  public updateMovementsListeners() {
+    this.authService.getUserDetail().subscribe((res) => {
+      this.movementsList$.next(res.movements);
+      this.totalAmount$.next(res.cash);
+    });
   }
 }

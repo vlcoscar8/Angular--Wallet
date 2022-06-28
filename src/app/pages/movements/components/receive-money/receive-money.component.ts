@@ -25,7 +25,7 @@ export class ReceiveMoneyComponent implements OnInit {
     }
     this.movService
       .receiveMoney(this.orderForm.value)
-      .subscribe((res) => console.log(res));
+      .subscribe(() => this.movService.updateMovementsListeners());
     this.clearForm();
   }
 

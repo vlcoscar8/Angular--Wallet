@@ -16,8 +16,11 @@ export class TotalAmountComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.getUserDetail().subscribe((res) => {
-      console.log(res);
       this.totalAmount = res.cash;
+    });
+
+    this.movService.totalAmount$.subscribe((res) => {
+      this.totalAmount = res;
     });
   }
 }
