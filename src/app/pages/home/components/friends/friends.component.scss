@@ -1,0 +1,7 @@
+@import "/src/styles.scss";
+
+.title {
+  @include desktop {
+    min-width: 120px;
+  }
+}

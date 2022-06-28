@@ -1,14 +1,15 @@
 <section class="home">
-  <figure class="home__account">
-    <app-account></app-account>
-  </figure>
-  <figure class="home__friends">
-    <app-friends></app-friends>
-    <app-add-friend></app-add-friend>
-  </figure>
-  <figure class="home__movs">
+  <div class="home__top">
+    <figure class="home__top--account">
+      <app-account></app-account>
+    </figure>
+    <figure class="home__top--friends">
+      <app-friends></app-friends>
+      <app-add-friend></app-add-friend>
+    </figure>
+  </div>
+  <figure class="home__down">
     <p>Last movement:</p>
     <app-table-list [type]="'last'"></app-table-list>
-    <!-- <app-last-movs></app-last-movs> -->
   </figure>
 </section>

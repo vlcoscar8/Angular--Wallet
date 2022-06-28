@@ -1,4 +1,9 @@
-<button mat-button [matMenuTriggerFor]="menu" *ngIf="userLogged">Menu</button>
+<i
+  class="fa-solid fa-user menu-btn"
+  mat-button
+  [matMenuTriggerFor]="menu"
+  *ngIf="userLogged"
+></i>
 <mat-menu #menu="matMenu">
   <button mat-menu-item [routerLink]="['/home']">Home</button>
   <button mat-menu-item [routerLink]="['/movements']">Movements</button>

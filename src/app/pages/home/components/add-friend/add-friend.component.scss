@@ -7,6 +7,10 @@
     display: flex;
     gap: 5px;
   }
+
+  p {
+    color: red;
+  }
 }
 
 ::ng-deep .mat-form-field {

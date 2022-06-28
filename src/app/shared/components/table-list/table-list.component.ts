@@ -4,6 +4,7 @@ import { Movement } from './../../../core/services/model/user.model';
 import {
   AfterViewInit,
   Component,
+  HostListener,
   Input,
   OnChanges,
   OnInit,
@@ -23,10 +24,18 @@ export class TableListComponent implements OnInit, OnChanges {
   public movements: Movement[] = [];
   public array: string[] = ['from', 'to', 'type', 'amount'];
   public dataSource: any;
+  public isDesktop?: boolean;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private movService: MovementsService) {}
+
+  @HostListener('window:resize')
+  onResize() {
+    window.innerWidth > 800
+      ? (this.isDesktop = true)
+      : (this.isDesktop = false);
+  }
 
   ngOnInit(): void {
     this.movService.getMovements().subscribe((res) => {

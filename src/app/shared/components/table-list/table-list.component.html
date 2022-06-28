@@ -39,7 +39,7 @@
   </table>
   <mat-paginator
     [length]="movements.length"
-    [pageSize]="3"
+    [pageSize]="isDesktop ? 5 : 3"
     [pageSizeOptions]="[1, 3, 5]"
     showFirstLastButtons
     aria-label="Select page"

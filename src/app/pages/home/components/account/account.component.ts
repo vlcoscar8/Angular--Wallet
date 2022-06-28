@@ -7,10 +7,10 @@ import { AuthService } from 'src/app/core/services/auth.service';
   styleUrls: ['./account.component.scss'],
 })
 export class AccountComponent implements OnInit {
-  public panelOpenState: boolean = false;
   public totalAmount?: number;
   public incomes?: number;
   public losses?: number;
+  public username?: string;
 
   constructor(private authService: AuthService) {}
 
@@ -23,6 +23,15 @@ export class AccountComponent implements OnInit {
       this.losses = res.movements
         .filter((el) => el.type === 'send')
         .reduce((acc, el) => acc + el.amount, 0);
+    });
+
+    this.authService.checkUserLogged();
+    this.authService.userLogged$.subscribe((e) => {
+      e
+        ? this.authService.getUserDetail().subscribe((res) => {
+            this.username = res.username;
+          })
+        : (this.username = undefined);
     });
   }
 }

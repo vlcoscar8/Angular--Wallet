@@ -1,10 +1,7 @@
 <mat-accordion>
-  <mat-expansion-panel
-    (opened)="panelOpenState = true"
-    (closed)="panelOpenState = false"
-  >
+  <mat-expansion-panel>
     <mat-expansion-panel-header>
-      <mat-panel-title> Your account </mat-panel-title>
+      <mat-panel-title> Your account - {{ username }} </mat-panel-title>
     </mat-expansion-panel-header>
     <ng-template matExpansionPanelContent>
       <p>Total amount: {{ totalAmount }} €</p>

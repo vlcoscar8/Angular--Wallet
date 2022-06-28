@@ -1,26 +1,49 @@
+@import "/src/styles.scss";
+
 .home {
-  background-color: rgb(237, 220, 245);
-  height: 90vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
 
-  &__account {
+  @include desktop {
+  }
+
+  &__top {
     padding-top: 2rem;
-    width: 80vw;
-    max-width: 450px;
+
+    @include desktop {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: center;
+      width: 100vw;
+      height: 45vh;
+    }
+
+    &--account {
+      width: 80vw;
+      max-width: 450px;
+    }
+
+    &--friends {
+      width: 80vw;
+      max-width: 450px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+
+      @include desktop {
+        flex-direction: row;
+        align-items: flex-start;
+      }
+    }
   }
 
-  &__friends {
-    width: 80vw;
-    max-width: 450px;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-  }
-
-  &__movs {
+  &__down {
     width: 80vw;
     max-width: 400px;
   }

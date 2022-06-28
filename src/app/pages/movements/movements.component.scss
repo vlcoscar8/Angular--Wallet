@@ -1,14 +1,29 @@
+@import "/src/styles.scss";
+
 .movs {
-  background-color: rgb(237, 220, 245);
-  height: 90vh;
+  height: 110%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: flex-start;
 
+  @include desktop {
+    height: 100%;
+  }
+
+  @include desktopBig {
+    flex-direction: row;
+    align-items: flex-start;
+    padding-top: 20px;
+  }
+
   &__left {
+    display: flex;
+    flex-direction: column;
+
     &--amount {
-      width: 30%;
+      width: 40%;
+      max-width: 170px;
     }
     &--list {
       width: 80vw;
@@ -18,8 +33,20 @@
 
   &__right {
     display: flex;
+    flex-direction: column;
     align-items: flex-start;
-    width: 80vw;
-    max-width: 600px;
+    justify-content: center;
+    width: 82vw;
+
+    @include desktop {
+      flex-direction: row;
+      padding-top: 80px;
+    }
+
+    &--order,
+    &--send {
+      width: 100%;
+      max-width: 250px;
+    }
   }
 }
