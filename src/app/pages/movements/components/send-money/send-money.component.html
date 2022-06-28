@@ -6,7 +6,7 @@
 >
   <mat-form-field appearance="fill">
     <mat-label>Friend</mat-label>
-    <mat-select formControlName="friend">
+    <mat-select formControlName="to">
       <mat-option *ngFor="let friend of friendsList" [value]="friend">
         {{ friend }}
       </mat-option>
@@ -20,4 +20,5 @@
     </mat-error>
   </mat-form-field>
   <button mat-raised-button color="primary" type="submit">Send Money</button>
+  <p *ngIf="error">{{ error }}</p>
 </form>

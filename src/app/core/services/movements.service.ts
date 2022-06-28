@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ReplaySubject, switchMap, Observable, forkJoin, map } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
-import { Movement, UserDetailResponse } from './model/user.model';
+import { Movement, SendForm, UserDetailResponse } from './model/user.model';
 
 const ACCESS_TOKEN = 'access_token';
 
@@ -19,6 +19,12 @@ export class MovementsService {
     private httpClient: HttpClient
   ) {}
 
+  private getUserIdLocalStorage(): string {
+    const token = localStorage.getItem(ACCESS_TOKEN);
+    const userId: string = token ? JSON.parse(token).userId : '';
+    return userId;
+  }
+
   public getMovements(): Observable<Movement[]> {
     return this.authService.getUserDetail().pipe(
       map((res) => {
@@ -30,11 +36,23 @@ export class MovementsService {
   }
 
   public receiveMoney(body: object): Observable<UserDetailResponse> {
-    const token = localStorage.getItem(ACCESS_TOKEN);
-    const userId: string = token ? JSON.parse(token).userId : '';
+    const userId = this.getUserIdLocalStorage();
     return this.httpClient.put<UserDetailResponse>(
       `${environment.api_url}user/receive/${userId}`,
       body
+    );
+  }
+
+  public sendMoney(formBody: SendForm): Observable<Movement> {
+    const userId = this.getUserIdLocalStorage();
+    const requestBody: object = {
+      from: userId,
+      ...formBody,
+    };
+
+    return this.httpClient.put<Movement>(
+      `${environment.api_url}user/send`,
+      requestBody
     );
   }
 

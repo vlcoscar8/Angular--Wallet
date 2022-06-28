@@ -38,3 +38,8 @@ export interface Movement {
   currentCash: number;
   __v: number;
 }
+
+export interface SendForm {
+  to: string;
+  amount: number;
+}
