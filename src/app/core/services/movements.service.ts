@@ -30,7 +30,7 @@ export class MovementsService {
       map((res) => {
         const array = res.movements.map((mov) => mov);
         this.movementsList$.next(array);
-        return array;
+        return array.reverse();
       })
     );
   }
@@ -58,7 +58,7 @@ export class MovementsService {
 
   public updateMovementsListeners() {
     this.authService.getUserDetail().subscribe((res) => {
-      this.movementsList$.next(res.movements);
+      this.movementsList$.next(res.movements.reverse());
       this.totalAmount$.next(res.cash);
     });
   }

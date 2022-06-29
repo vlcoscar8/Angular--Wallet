@@ -36,25 +36,20 @@ export class TableListComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.movService.getMovements().subscribe((res) => {
-      this.movements = res.reverse();
-
-      if (this.type === 'last' && this.movements) {
-        console.log(1);
-        this.movements = res.reverse().splice(this.movements.length - 1, 1);
-        this.dataSource = new MatTableDataSource(this.movements);
+      if (this.type === 'last') {
+        this.movements = res.splice(res.length - 1, 1);
+        this.dataSource = new MatTableDataSource(res.splice(res.length - 1, 1));
         this.dataSource.paginator = this.paginator;
         return;
       }
 
-      console.log(res);
-      this.dataSource = new MatTableDataSource(res.reverse());
+      this.dataSource = new MatTableDataSource(res);
       this.dataSource.paginator = this.paginator;
     });
 
     this.movService.movementsList$.subscribe((res) => {
-      this.movements = res.reverse();
       if (this.dataSource) {
-        this.dataSource.data = this.movements;
+        this.dataSource.data = res;
       }
     });
   }
