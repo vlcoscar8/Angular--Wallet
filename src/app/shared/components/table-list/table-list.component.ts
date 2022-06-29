@@ -1,14 +1,11 @@
-import { forkJoin, switchMap } from 'rxjs';
 import { MovementsService } from './../../../core/services/movements.service';
 import { Movement } from './../../../core/services/model/user.model';
 import {
-  AfterViewInit,
   Component,
   HostListener,
   Input,
   OnChanges,
   OnInit,
-  SimpleChanges,
   ViewChild,
 } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
@@ -42,10 +39,15 @@ export class TableListComponent implements OnInit, OnChanges {
       this.movements = res.reverse();
 
       if (this.type === 'last' && this.movements) {
+        console.log(1);
         this.movements = res.reverse().splice(this.movements.length - 1, 1);
+        this.dataSource = new MatTableDataSource(this.movements);
+        this.dataSource.paginator = this.paginator;
+        return;
       }
 
-      this.dataSource = new MatTableDataSource(this.movements.reverse());
+      console.log(res);
+      this.dataSource = new MatTableDataSource(res.reverse());
       this.dataSource.paginator = this.paginator;
     });
 
